@@ -965,7 +965,7 @@ void SettingsDefaultSet2(void) {
   Settings->webserver = WEB_SERVER;
   Settings->weblog_level = WEB_LOG_LEVEL;
   SettingsUpdateText(SET_WEBPWD, PSTR(WEB_PASSWORD));
-  SettingsUpdateText(SET_CORS, PSTR(CORS_DOMAIN));
+  //SettingsUpdateText(SET_CORS, PSTR(CORS_DOMAIN));
 #ifdef DISABLE_REFERER_CHK
   flag5.disable_referer_chk |= false;
 #else
@@ -1031,13 +1031,13 @@ void SettingsDefaultSet2(void) {
   Settings->mqtt_wifi_timeout = MQTT_WIFI_CLIENT_TIMEOUT / 100;
 
   // Energy
-  flag.no_power_on_check |= ENERGY_VOLTAGE_ALWAYS;
+  //flag.no_power_on_check |= ENERGY_VOLTAGE_ALWAYS;
   flag2.current_resolution |= 3;
 //  flag2.voltage_resolution |= 0;
 //  flag2.wattage_resolution |= 0;
   flag2.energy_resolution |= ENERGY_RESOLUTION;
-  flag3.dds2382_model |= ENERGY_DDS2382_MODE;
-  flag3.hardware_energy_total |= ENERGY_HARDWARE_TOTALS;
+ // flag3.dds2382_model |= ENERGY_DDS2382_MODE;
+  //flag3.hardware_energy_total |= ENERGY_HARDWARE_TOTALS;
   Settings->param[P_MAX_POWER_RETRY] = MAX_POWER_RETRY;
 //  Settings->energy_power_delta[0] = 0;
 //  Settings->energy_power_delta[1] = 0;
@@ -1080,13 +1080,13 @@ void SettingsDefaultSet2(void) {
   Settings->param[P_OVER_TEMP] = ENERGY_OVERTEMP;
 
   // IRRemote
-  flag.ir_receive_decimal |= IR_DATA_RADIX;
-  flag3.receive_raw |= IR_ADD_RAW_DATA;
+  //flag.ir_receive_decimal |= IR_DATA_RADIX;
+ // flag3.receive_raw |= IR_ADD_RAW_DATA;
   Settings->param[P_IR_UNKNOW_THRESHOLD] = IR_RCV_MIN_UNKNOWN_SIZE;
   Settings->param[P_IR_TOLERANCE] = IR_RCV_TOLERANCE;
 
   // RF Bridge
-  flag.rf_receive_decimal |= RF_DATA_RADIX;
+  //flag.rf_receive_decimal |= RF_DATA_RADIX;
 //  for (uint32_t i = 0; i < 17; i++) { Settings->rf_code[i][0] = 0; }
   memcpy_P(Settings->rf_code[0], kDefaultRfCode, 9);
 
@@ -1107,8 +1107,8 @@ void SettingsDefaultSet2(void) {
   flag2.pressure_resolution |= PRESSURE_RESOLUTION;
   flag2.humidity_resolution |= HUMIDITY_RESOLUTION;
   flag2.temperature_resolution |= TEMP_RESOLUTION;
-  flag3.ds18x20_internal_pullup |= DS18X20_PULL_UP;
-  flag3.counter_reset_on_tele |= COUNTER_RESET;
+ // flag3.ds18x20_internal_pullup |= DS18X20_PULL_UP;
+ // flag3.counter_reset_on_tele |= COUNTER_RESET;
 //  Settings->altitude = 0;
 
   // Rules
@@ -1130,18 +1130,18 @@ void SettingsDefaultSet2(void) {
   flag.knx_enable_enhancement |= KNX_ENHANCED;
 
   // Light
-  flag.pwm_control |= LIGHT_MODE;
-  flag.ws_clock_reverse |= LIGHT_CLOCK_DIRECTION;
-  flag.light_signal |= LIGHT_PAIRS_CO2;
-  flag.not_power_linked |= LIGHT_POWER_CONTROL;
-  flag.decimal_text |= LIGHT_COLOR_RADIX;
-  flag3.pwm_multi_channels |= LIGHT_CHANNEL_MODE;
-  flag3.slider_dimmer_stay_on |= LIGHT_SLIDER_POWER;
-  flag4.alexa_ct_range |= LIGHT_ALEXA_CT_RANGE;
-  flag4.pwm_ct_mode |= LIGHT_PWM_CT_MODE;
-  flag4.white_blend_mode |= LIGHT_WHITE_BLEND_MODE;
-  flag4.virtual_ct |= LIGHT_VIRTUAL_CT;
-  flag4.virtual_ct_cw |= LIGHT_VIRTUAL_CT_CW;
+  // flag.pwm_control |= LIGHT_MODE;
+  // flag.ws_clock_reverse |= LIGHT_CLOCK_DIRECTION;
+  // flag.light_signal |= LIGHT_PAIRS_CO2;
+  // flag.not_power_linked |= LIGHT_POWER_CONTROL;
+  // flag.decimal_text |= LIGHT_COLOR_RADIX;
+  // flag3.pwm_multi_channels |= LIGHT_CHANNEL_MODE;
+  // flag3.slider_dimmer_stay_on |= LIGHT_SLIDER_POWER;
+  // flag4.alexa_ct_range |= LIGHT_ALEXA_CT_RANGE;
+  // flag4.pwm_ct_mode |= LIGHT_PWM_CT_MODE;
+  // flag4.white_blend_mode |= LIGHT_WHITE_BLEND_MODE;
+  // flag4.virtual_ct |= LIGHT_VIRTUAL_CT;
+  // flag4.virtual_ct_cw |= LIGHT_VIRTUAL_CT_CW;
 
   Settings->pwm_frequency = PWM_FREQ;
   Settings->pwm_range = PWM_RANGE;
@@ -1237,25 +1237,25 @@ void SettingsDefaultSet2(void) {
   SettingsEnableAllI2cDrivers();
 
   // Tuya
-  flag3.tuya_apply_o20 |= TUYA_SETOPTION_20;
-  flag5.tuya_allow_dimmer_0 |= TUYA_ALLOW_DIMMER_0;
-  flag5.tuya_exclude_from_mqtt |= TUYA_SETOPTION_137;
-  flag3.tuya_serial_mqtt_publish |= MQTT_TUYA_RECEIVED;
-  mbflag2.temperature_set_res |= TUYA_TEMP_SET_RES;
+  // flag3.tuya_apply_o20 |= TUYA_SETOPTION_20;
+  // flag5.tuya_allow_dimmer_0 |= TUYA_ALLOW_DIMMER_0;
+  // flag5.tuya_exclude_from_mqtt |= TUYA_SETOPTION_137;
+  // flag3.tuya_serial_mqtt_publish |= MQTT_TUYA_RECEIVED;
+  // mbflag2.temperature_set_res |= TUYA_TEMP_SET_RES;
 
-  flag3.buzzer_enable |= BUZZER_ENABLE;
-  flag3.shutter_mode |= SHUTTER_SUPPORT;
-  flag3.pcf8574_ports_inverted |= PCF8574_INVERT_PORTS;
-  flag4.zigbee_use_names |= ZIGBEE_FRIENDLY_NAMES;
-  flag4.zigbee_distinct_topics |= ZIGBEE_DISTINCT_TOPICS;
-  flag4.remove_zbreceived |= ZIGBEE_RMV_ZBRECEIVED;
-  flag4.zb_index_ep |= ZIGBEE_INDEX_EP;
-  flag4.zb_topic_fname |= ZIGBEE_TOPIC_FNAME;
-  flag4.mqtt_tls |= MQTT_TLS_ENABLED;
-  flag4.mqtt_no_retain |= MQTT_NO_RETAIN;
+  // flag3.buzzer_enable |= BUZZER_ENABLE;
+  // flag3.shutter_mode |= SHUTTER_SUPPORT;
+  // flag3.pcf8574_ports_inverted |= PCF8574_INVERT_PORTS;
+  // flag4.zigbee_use_names |= ZIGBEE_FRIENDLY_NAMES;
+  // flag4.zigbee_distinct_topics |= ZIGBEE_DISTINCT_TOPICS;
+  // flag4.remove_zbreceived |= ZIGBEE_RMV_ZBRECEIVED;
+  // flag4.zb_index_ep |= ZIGBEE_INDEX_EP;
+  // flag4.zb_topic_fname |= ZIGBEE_TOPIC_FNAME;
+  // flag4.mqtt_tls |= MQTT_TLS_ENABLED;
+  // flag4.mqtt_no_retain |= MQTT_NO_RETAIN;
 
-  flag5.shift595_invert_outputs |= SHIFT595_INVERT_OUTPUTS;
-  Settings->shift595_device_count = SHIFT595_DEVICE_COUNT;
+  // flag5.shift595_invert_outputs |= SHIFT595_INVERT_OUTPUTS;
+  // Settings->shift595_device_count = SHIFT595_DEVICE_COUNT;
   flag5.tls_use_fingerprint |= MQTT_TLS_FINGERPRINT;
   #ifdef BLE_ESP32_ENABLE
   flag5.mi32_enable |= BLE_ESP32_ENABLE;
@@ -1336,9 +1336,9 @@ void SettingsDefaultWebColor(void) {
 }
 
 void SettingsEnableAllI2cDrivers(void) {
-  Settings->i2c_drivers[0] = I2CDRIVERS_0_31;
-  Settings->i2c_drivers[1] = I2CDRIVERS_32_63;
-  Settings->i2c_drivers[2] = I2CDRIVERS_64_95;
+  // Settings->i2c_drivers[0] = I2CDRIVERS_0_31;
+  // Settings->i2c_drivers[1] = I2CDRIVERS_32_63;
+  // Settings->i2c_drivers[2] = I2CDRIVERS_64_95;
 }
 
 /********************************************************************************************/
@@ -1613,20 +1613,6 @@ void SettingsDelta(void) {
     }
     if (Settings->version < 0x0C030102) {  // 12.3.1.2
       Settings->shutter_motorstop = 0;
-    }
-    if (Settings->version < 0x0C030103) {  // 12.3.1.3
-      for (uint32_t i = 0; i < 3; i++) {
-        RtcSettings.energy_kWhtotal_ph[i] /= 100;
-        Settings->energy_kWhtotal_ph[i] /= 100;
-        RtcSettings.energy_kWhexport_ph[i] /= 100;
-        Settings->energy_kWhexport_ph[i] /= 100;
-        RtcSettings.energy_usage.usage1_kWhtotal /= 100;
-        RtcSettings.energy_usage.usage2_kWhtotal /= 100;
-        RtcSettings.energy_usage.return1_kWhtotal /= 100;
-        RtcSettings.energy_usage.return2_kWhtotal /= 100;
-        RtcSettings.energy_usage.last_return_kWhtotal /= 100;
-        RtcSettings.energy_usage.last_usage_kWhtotal /= 100;
-      }
     }
 
     Settings->version = VERSION;
