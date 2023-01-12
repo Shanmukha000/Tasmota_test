@@ -62,7 +62,7 @@
 
 #define SAVE_DATA              1                 // [SaveData] Save changed parameters to Flash (0 = disable, 1 - 3600 seconds)
 #define SAVE_STATE             true              // [SetOption0] Save changed power state to Flash (false = disable, true = enable)
-#define BOOT_LOOP_OFFSET       1                 // [SetOption36] Number of boot loops before starting restoring defaults (0 = disable, 1..200 = boot loops offset)
+#define BOOT_LOOP_OFFSET       0                 // [SetOption36] Number of boot loops before starting restoring defaults (0 = disable, 1..200 = boot loops offset)
 
 // -- Wi-Fi ---------------------------------------
 #define WIFI_IP_ADDRESS        "0.0.0.0"         // [IpAddress1] Set to 0.0.0.0 for using DHCP or enter a static IP address
@@ -71,8 +71,8 @@
 #define WIFI_DNS               "192.168.1.1"     // [IpAddress4] If not using DHCP set DNS1 IP address (might be equal to WIFI_GATEWAY)
 #define WIFI_DNS2              "0.0.0.0"         // [IpAddress5] If not using DHCP set DNS2 IP address (might be equal to WIFI_GATEWAY)
 
-#define STA_SSID1              ""                // [Ssid1] Wi-Fi SSID
-#define STA_PASS1              ""                // [Password1] Wi-Fi password
+#define STA_SSID1              "CFRnD"                // [Ssid1] Wi-Fi SSID
+#define STA_PASS1              "HMPL@admin99"                // [Password1] Wi-Fi password
 #define STA_SSID2              ""                // [Ssid2] Optional alternate AP Wi-Fi SSID
 #define STA_PASS2              ""                // [Password2] Optional alternate AP Wi-Fi password
 #define WIFI_AP_PASSPHRASE     ""                // AccessPoint passphrase. For WPA2 min 8 char, for open use "" (max 63 char).
@@ -116,9 +116,9 @@
 
 #define MQTT_KEEPALIVE         30                // [MqttKeepAlive] Number of seconds between KeepAlive messages
 #define MQTT_SOCKET_TIMEOUT    4                 // [MqttTimeout] Number of seconds before Mqtt connection timeout
-#define MQTT_WIFI_CLIENT_TIMEOUT 200             // [MqttWifiTimeout] Number of milliseconds before Mqtt Wi-Fi timeout
+#define MQTT_WIFI_CLIENT_TIMEOUT 2000             // [MqttWifiTimeout] Number of milliseconds before Mqtt Wi-Fi timeout
 
-#define MQTT_HOST              ""                // [MqttHost]
+#define MQTT_HOST              "broker.hivemq.com"                // [MqttHost]
 #define MQTT_FINGERPRINT1      0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00  // [MqttFingerprint1] (auto-learn)
 #define MQTT_FINGERPRINT2      0xDA,0x39,0xA3,0xEE,0x5E,0x6B,0x4B,0x0D,0x32,0x55,0xBF,0xEF,0x95,0x60,0x18,0x90,0xAF,0xD8,0x07,0x09  // [MqttFingerprint2] (invalid)
 #define MQTT_PORT              1883              // [MqttPort] MQTT port (10123 on CloudMQTT)
@@ -191,7 +191,7 @@
   #define CORS_DOMAIN            ""                // [Cors] CORS Domain for preflight requests
 
 // -- HTTP Options --------------------------------
-#define GUI_SHOW_HOSTNAME      false             // [SetOption53] Show hostname and IP address in GUI main menu
+#define GUI_SHOW_HOSTNAME      true             // [SetOption53] Show hostname and IP address in GUI main menu
 
 // -- HTTP GUI Colors -----------------------------
 // HTML hex color codes. Only 3 and 6 digit hex string values are supported!! See https://www.w3schools.com/colors/colors_hex.asp
@@ -271,8 +271,8 @@
 #define TIME_STD_OFFSET        +60               // Offset from UTC in minutes (-780 to +780)
 
 // -- Location ------------------------------------
-#define LATITUDE               48.858360         // [Latitude] Your location to be used with sunrise and sunset
-#define LONGITUDE              2.294442          // [Longitude] Your location to be used with sunrise and sunset
+#define LATITUDE               28.7041         // [Latitude] Your location to be used with sunrise and sunset
+#define LONGITUDE              77.1025          // [Longitude] Your location to be used with sunrise and sunset
 
 // -- Application ---------------------------------
 #define APP_TIMEZONE           1                 // [Timezone] +1 hour (Amsterdam) (-13 .. 14 = hours from UTC, 99 = use TIME_DST/TIME_STD)
@@ -314,7 +314,7 @@
 
 #define APP_FLASH_CYCLE        false             // [SetOption12] Switch between dynamic or fixed slot flash save location
 #define APP_NO_RELAY_SCAN      false             // [SetOption63] Don't scan relay power state at restart
-#define APP_DISABLE_POWERCYCLE false             // [SetOption65] Disable fast power cycle detection for device reset
+#define APP_DISABLE_POWERCYCLE true             // [SetOption65] Disable fast power cycle detection for device reset
 #define DEEPSLEEP_BOOTCOUNT    false             // [SetOption76] Enable incrementing bootcount when deepsleep is enabled
 
 #define APP_INTERLOCK_MODE     false             // [Interlock] Relay interlock mode
@@ -512,17 +512,17 @@
 // -- Rules or Script  ----------------------------
 // Select none or only one of the below defines USE_RULES or USE_SCRIPT
 #define USE_RULES                                // Add support for rules (+8k code)
-//  #define USE_EXPRESSION                         // Add support for expression evaluation in rules (+3k2 code, +64 bytes mem)
-//    #define SUPPORT_IF_STATEMENT                 // Add support for IF statement in rules (+4k2 code, -332 bytes mem)
+  #define USE_EXPRESSION                         // Add support for expression evaluation in rules (+3k2 code, +64 bytes mem)
+    #define SUPPORT_IF_STATEMENT                 // Add support for IF statement in rules (+4k2 code, -332 bytes mem)
 //  #define USER_RULE1 "<Any rule1 data>"          // Add rule1 data saved at initial firmware load or when command reset is executed
 //  #define USER_RULE2 "<Any rule2 data>"          // Add rule2 data saved at initial firmware load or when command reset is executed
 //  #define USER_RULE3 "<Any rule3 data>"          // Add rule3 data saved at initial firmware load or when command reset is executed
 
 //#define USE_SCRIPT                               // Add support for script (+17k code)
 //  #define USE_SCRIPT_FATFS 4                     // Script: Add FAT FileSystem Support
-//  #define SUPPORT_MQTT_EVENT                     // Support trigger event with MQTT subscriptions (+3k5 code)
+  #define SUPPORT_MQTT_EVENT                     // Support trigger event with MQTT subscriptions (+3k5 code)
 
-//#define USER_BACKLOG "<Any command separated by a semicolon (;)>"  // Add commands executed at firmware load or when command reset is executed
+#define USER_BACKLOG "timezone +5:30"  // Add commands executed at firmware load or when command reset is executed
 
 // -- Optional modules ----------------------------
 #define ROTARY_V1                                // Add support for Rotary Encoder as used in MI Desk Lamp (+0k8 code)
@@ -735,7 +735,7 @@
       #define MTX_ADDRESS7     0x00              // [DisplayAddress7] I2C address of seventh 8x8 matrix module
       #define MTX_ADDRESS8     0x00              // [DisplayAddress8] I2C address of eigth 8x8 matrix module
     #define USE_DISPLAY_SEVENSEG                 // [DisplayModel 11] [I2cDriver47] Enable sevenseg display (I2C 0x70-0x77) (<+11k code)
-//     #define USE_DISPLAY_SEVENSEG_COMMON_ANODE   // Enable support for common anode sevenseg displays
+     #define USE_DISPLAY_SEVENSEG_COMMON_ANODE   // Enable support for common anode sevenseg displays
                                                  // Multiple sevenseg displays are logically arranged vertically with MTX_ADDRESS1 at y=0,
                                                  // MTX_ADDRESS2 at y=1, up to MTX_ADDRESS8 at y=7
                                                  // Command: DisplayText [yn]8888
@@ -753,9 +753,9 @@
 
 #endif  // USE_I2C
 
-//  #define USE_DISPLAY                            // Add I2C/TM1637/MAX7219 Display Support (+2k code)
+  #define USE_DISPLAY                            // Add I2C/TM1637/MAX7219 Display Support (+2k code)
 //    #define USE_DISPLAY_TM1637                   // [DisplayModel 15] Enable TM1637 Module
-//    #define USE_DISPLAY_MAX7219                  // [DisplayModel 19] Enable MAX7219 Module
+    #define USE_DISPLAY_MAX7219                  // [DisplayModel 19] Enable MAX7219 Module
 
 // -- Universal Display Driver ---------------------------------
 // #define USE_UNIVERSAL_DISPLAY                   // New universal display driver for both I2C and SPI
@@ -766,15 +766,15 @@
 
 #ifdef USE_SPI
 //  #define USE_NRF24                              // Add SPI support for NRF24L01(+) (+2k6 code)
-    #define USE_MIBLE                            // BLE-bridge for some Mijia-BLE-sensors (+4k7 code)
-//  #define USE_DISPLAY                            // Add SPI Display support for 320x240 and 480x320 TFT
+//    #define USE_MIBLE                            // BLE-bridge for some Mijia-BLE-sensors (+4k7 code)
+  #define USE_DISPLAY                            // Add SPI Display support for 320x240 and 480x320 TFT
     #define USE_DISPLAY_ILI9341                  // [DisplayModel 4] Enable ILI9341 Tft 480x320 display (+19k code)
-//    #define USE_DISPLAY_EPAPER_29                // [DisplayModel 5] Enable e-paper 2.9 inch display (+19k code)
-//    #define USE_DISPLAY_EPAPER_42                // [DisplayModel 6] Enable e-paper 4.2 inch display
-//    #define USE_DISPLAY_SSD1351                  // [DisplayModel 9] Enable SSD1351 module
-//    #define USE_DISPLAY_RA8876                   // [DisplayModel 10] [I2cDriver39] (Touch)
-//    #define USE_DISPLAY_ST7789                   // [DisplayModel 12] Enable ST7789 module
-//    #define USE_DISPLAY_SSD1331                  // [DisplayModel 14] Enable SSD1331 module
+    #define USE_DISPLAY_EPAPER_29                // [DisplayModel 5] Enable e-paper 2.9 inch display (+19k code)
+    #define USE_DISPLAY_EPAPER_42                // [DisplayModel 6] Enable e-paper 4.2 inch display
+    #define USE_DISPLAY_SSD1351                  // [DisplayModel 9] Enable SSD1351 module
+    #define USE_DISPLAY_RA8876                   // [DisplayModel 10] [I2cDriver39] (Touch)
+    #define USE_DISPLAY_ST7789                   // [DisplayModel 12] Enable ST7789 module
+    #define USE_DISPLAY_SSD1331                  // [DisplayModel 14] Enable SSD1331 module
 //  #define USE_RC522                              // Add support for MFRC522 13.56Mhz Rfid reader (+6k code)
 //    #define USE_RC522_DATA_FUNCTION              // Add support for reading data block content (+0k4 code)
 //    #define USE_RC522_TYPE_INFORMATION           // Add support for showing card type (+0k4 code)
@@ -1205,7 +1205,7 @@
 //#define FIRMWARE_LITE                            // Create tasmota-lite with no sensors
 //#define FIRMWARE_SENSORS                         // Create tasmota-sensors with useful sensors enabled
 //#define FIRMWARE_KNX_NO_EMULATION                // Create tasmota-knx with KNX but without Emulation
-//#define FIRMWARE_DISPLAYS                        // Create tasmota-display with display drivers enabled
+#define FIRMWARE_DISPLAYS                        // Create tasmota-display with display drivers enabled
 //#define FIRMWARE_IR                              // Create tasmota-ir with IR full protocols activated, and many sensors disabled
 //#define FIRMWARE_MINIMAL                         // Create tasmota-minimal as intermediate firmware for OTA-MAGIC
 
